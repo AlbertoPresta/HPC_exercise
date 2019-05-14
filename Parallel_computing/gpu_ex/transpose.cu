@@ -3,8 +3,8 @@
 #include<math.h>
 
 
-#define N 10
-#define N_THREADS 2
+#define N 8192
+#define N_THREADS 64
 
 // space for function
 
@@ -52,34 +52,40 @@ int main(void){
 		 int size = N*N*sizeof(int);
 		 // copy from host memomy to device memory
 
-		 cudaMemcpy(mat_in_dev,mat_in_h,size,cudaMemcpyHostToDevice);
+	         cudaMemcpy(mat_in_dev,mat_in_h,size,cudaMemcpyHostToDevice);
+
+
+		cudaEvent_t start, stop;
+	  	cudaEventCreate(&start);
+		cudaEventCreate(&stop);
+
 		
 	      // kernel
-		  int N_BLOCKS = N*N/N_THREADS;
-          mat_transpose<<<N_BLOCKS,N_THREADS>>>(mat_in_dev,mat_out_dev);
+		int N_BLOCKS = N*N/N_THREADS;
+		cudaEventRecord(start);                
+                mat_transpose<<<N_BLOCKS,N_THREADS>>>(mat_in_dev,mat_out_dev);
+		cudaEventRecord(stop);
+		//copy from device memory to host memory
 
-		   //copy from device memory to host memory
-
-		   cudaMemcpy(mat_out_h,mat_out_dev,size,cudaMemcpyDeviceToHost);
+		cudaMemcpy(mat_out_h,mat_out_dev,size,cudaMemcpyDeviceToHost);
 				       
-				       
+		cudaEventSynchronize(stop);
+		float milliseconds = 0;
+		cudaEventElapsedTime(&milliseconds, start, stop);
+		printf("dimensions of block: %d x %d\n",8,8);
+        	printf(" Time in milliseconds: %f\n",milliseconds);
+        	printf("Bandwidth: %f GB/s\n",2*size/milliseconds/1e6);		
+		
+		
+						       
 		    // free the memory
 
-		    free(mat_in_h);
-			free(mat_out_h);
+		free(mat_in_h);
+		free(mat_out_h);
 	        cudaFree(mat_in_dev);
-			cudaFree(mat_out_dev);
-			return 0;
+		cudaFree(mat_out_dev);
+		return 0;
 
-
-
-
-
-
-
-
-
-
-			}
+	}
 
 			

@@ -98,8 +98,9 @@ int main(void){
 	cudaEventSynchronize(stop);
 	float milliseconds = 0;
 	cudaEventElapsedTime(&milliseconds, start, stop);
-	printf("%f\n",milliseconds);
-
+	printf("dimensions of block: %d x %d\n",LINEAR_SIDE_X,LINEAR_SIDE_Y);
+        printf("Time in milliseconds: %f\n",milliseconds);
+        printf("Bandwidth: %f GB/s\n",2*size/milliseconds/1e6);
 
 
 	//free the memory
