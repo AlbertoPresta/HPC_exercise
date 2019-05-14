@@ -3,7 +3,8 @@
 #include<math.h>
 
 #define N 8192
-#define LINEAR_SIDE 32
+#define LINEAR_SIDE_X 32
+#define LINEAR_SIDE_Y 16
 
 void print_matrix(int *p){
         for(int i = 0;i<N;i++){
@@ -31,7 +32,7 @@ __global__ void transpose(int *mat_in_dev, int *mat_out_dev){
 	//local memory location where to save  matrix portion
 	//related to the blocks
 	// shared by all threads within a block
-	__shared__  int temp_matrix[LINEAR_SIDE][LINEAR_SIDE];
+	__shared__  int temp_matrix[LINEAR_SIDE_X][LINEAR_SIDE_Y];
 	
 //	creation of the global indexes in order to journey to the matrix 	
 	int global_x = blockIdx.x*blockDim.x + threadIdx.x;
@@ -66,7 +67,6 @@ int main(void){
 	cudaMalloc((void**)&mat_in_dev,N*N*sizeof(int));
 	cudaMalloc((void**)&mat_out_dev,N*N*sizeof(int));
 	fill_matrix(mat_in_h);	
-
 	//copy matrix from host to device
 	int size = N*N*sizeof(int);
 	cudaMemcpy(mat_in_dev,mat_in_h,size,cudaMemcpyHostToDevice);
@@ -74,8 +74,8 @@ int main(void){
 	// definition of variables dim3
 	dim3 grid,block;
 	
-	block.x = LINEAR_SIDE;
-	block.y = LINEAR_SIDE;
+	block.x = LINEAR_SIDE_X;
+	block.y = LINEAR_SIDE_Y;
 	grid.x = N/block.x;
 	grid.y = N/block.y;
 
@@ -98,7 +98,7 @@ int main(void){
 	cudaEventSynchronize(stop);
 	float milliseconds = 0;
 	cudaEventElapsedTime(&milliseconds, start, stop);
-	printf("%f milliseconds\n",milliseconds);
+	printf("%f\n",milliseconds);
 
 
 

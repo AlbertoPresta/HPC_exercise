@@ -3,7 +3,7 @@
 #include<math.h>
 
 #define N 8192
-#define LINEAR_SIDE 32
+#define LINEAR_SIDE 8
 
 void print_matrix(int *p){
         for(int i = 0;i<N;i++){
@@ -66,7 +66,6 @@ int main(void){
 	cudaMalloc((void**)&mat_in_dev,N*N*sizeof(int));
 	cudaMalloc((void**)&mat_out_dev,N*N*sizeof(int));
 	fill_matrix(mat_in_h);	
-
 	//copy matrix from host to device
 	int size = N*N*sizeof(int);
 	cudaMemcpy(mat_in_dev,mat_in_h,size,cudaMemcpyHostToDevice);
@@ -98,7 +97,7 @@ int main(void){
 	cudaEventSynchronize(stop);
 	float milliseconds = 0;
 	cudaEventElapsedTime(&milliseconds, start, stop);
-	printf("%f milliseconds\n",milliseconds);
+	printf("%f\n",milliseconds);
 
 
 
