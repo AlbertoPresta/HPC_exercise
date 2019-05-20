@@ -1,0 +1,5 @@
+In this file there are 1 file .c where there is a code which calculates Pi 
+with an Openmpi approach.
+Also, there is a script bash to run the program in the foolowing way
+
+qsub -l nodes=2:ppn=20,walltime=00:50:00  mpi_pi.sh 

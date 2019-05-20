@@ -4,7 +4,9 @@
  
 
 
-
+// function to calculate Pi in a portion of domani, using an open_mpi approach
+// Every MPI processes calls this function with different input (apart from h)
+//parallelizing a lot the computation
 double mpi_pi(double local_a,double local_b,double h){
    double local_res = 0.0;
    while(local_a<=local_b){
@@ -28,14 +30,16 @@ double mpi_pi(double local_a,double local_b,double h){
 	MPI_Comm_rank( MPI_COMM_WORLD, &rank );
 	MPI_Comm_size( MPI_COMM_WORLD, &npes );
 	int count = N/npes;
-	double start = rank*count*h;
-	double end= start + count*h;
+	double start = rank*count*h; // start point of domain(different for every procs)
+	double end= start + count*h; //end point of domain(diff. for every procs)
 	double local = mpi_pi(start,end,h);
 	double global_res;
+//	 takes an array of input elements on each process and returns an array of output elements to the root process 
 	MPI_Reduce(&local,&global_res,1,MPI_DOUBLE,MPI_SUM,npes-1,MPI_COMM_WORLD);
 	double fine = MPI_Wtime();
 	if(rank==npes-1){MPI_Send(&global_res,1,MPI_DOUBLE,0,101,MPI_COMM_WORLD);}
 	if(rank==0){
+	// first proc. receive data
 	MPI_Recv(&global_res,1,MPI_DOUBLE,npes-1,101,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 	printf("%f\n", fine - inizio);
 	}

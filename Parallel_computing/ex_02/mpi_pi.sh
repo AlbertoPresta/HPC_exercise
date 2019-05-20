@@ -1,7 +1,6 @@
 #!/bin/bash 
 
-cd /home/apresta/DSSC/Lab/Day3
-
+cd HPC_exercise/Parallel_computing/ex_02
 module load openmpi
 
 mpicc mpi_pi.c -std=gnu99  -o ex
