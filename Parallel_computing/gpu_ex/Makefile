@@ -1,5 +1,6 @@
 CC = nvcc
 
+
 all: transpose 64_shared_transpose 512_shared_transpose 1024_shared_transpose
 
 

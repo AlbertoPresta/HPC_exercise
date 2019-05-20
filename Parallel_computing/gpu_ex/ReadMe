@@ -1,0 +1,3 @@
+In interactive mode, we have first of all to load module for gpu 
+
+module load cudatoolkit/10.0
