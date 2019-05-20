@@ -1,0 +1,17 @@
+-In the first folder there is the code which built and print the identity matrix
+using openmpi approach and blocking communication
+In order to compile this code we have the following command (Obviously we have to download openmpi modules):
+			
+			mpicc  identity.c -std=gnu99 -o pi
+			
+In order to run this code, we have the following command:
+
+		mpirun -np 4 ./pi
+		
+
+
+- in the second folder, there are two exercise in which we explore the way of communicating
+between different procs in openmpi 
+Here we have a script bash which produce the two executables and print results
+in two different .txt files
+

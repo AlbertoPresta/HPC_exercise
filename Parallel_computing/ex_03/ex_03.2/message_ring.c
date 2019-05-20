@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
     for (size_t i = 0; i<npes; i++){
     //creation of the variable req, for MPI_WAIT
     MPI_Request req;
-    MPI_Isend(local,N,MPI_INT,(rank+1)%npes,101,MPI_COMM_WORLD,&req); // sending
+    MPI_Isend(local,N,MPI_INT,(rank+1)%npes,101,MPI_COMM_WORLD,&req); // sending npes time
     for(size_t i = 0; i<N;i++){sum[i] = sum[i] + local[i];}
    MPI_Wait(&req, MPI_STATUS_IGNORE);
     MPI_Irecv(local,N,MPI_INT,(rank - 1 + npes)%npes,101,MPI_COMM_WORLD,&req);

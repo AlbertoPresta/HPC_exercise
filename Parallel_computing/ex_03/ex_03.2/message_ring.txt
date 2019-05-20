@@ -1,0 +1,6 @@
+number of processes: 
+0 4 8 12 16  from proc 2
+0 4 8 12 16  from proc 3
+0 4 8 12 16  from proc 0
+0 4 8 12 16  from proc 1
+ 
