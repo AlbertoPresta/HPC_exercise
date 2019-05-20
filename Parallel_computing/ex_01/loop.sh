@@ -1,5 +1,4 @@
-cd second_semester/day2
-
+cd HPC_exercise/Parallel_computing/ex_01
 
  gcc -fopenmp loop.c -std=gnu99 -o loop
 

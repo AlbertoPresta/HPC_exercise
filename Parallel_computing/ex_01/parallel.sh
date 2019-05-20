@@ -1,5 +1,4 @@
-cd second_semester/day2
-
+cd HPC_exercise/Parallel_computing/ex_01
 gcc -fopenmp parallel_pi.c -o parallel -std=gnu99
 
 if [ -f parallel.txt ]; then rm parallel.txt; fi

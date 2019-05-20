@@ -27,6 +27,9 @@ int main(int argc,char * argv[]){
     {
        int nthreads = omp_get_num_threads(); // return number of threads
        thread_id = omp_get_thread_num(); // return the id threads
+	// in the following frame of code, We will call the function
+	//print_usage() (which simply a "*" in a multhi-thread world) using 
+	//different way of scheduling threads job
        #pragma omp for  schedule(static)
            for( i = 0;i<N;i++){a[i]=thread_id;}
            #pragma omp single

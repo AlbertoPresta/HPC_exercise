@@ -1,48 +1,23 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #include<stdio.h>
 #include<stdlib.h>
 #include<omp.h>
 
-
+// in this code there are three different function 
+// which calculate pi using an openmp approach and 
+// using three different commands
 double critical_parallel_approx_pi(size_t N){
-   double h =(1.0/N);
-   double pi = 0.0;
+   //define values useful for calculationg Pi 
+   double h =(1.0/N); // step 
+   double pi = 0.0; // global Pi
    #pragma omp parallel
    {
-     double local_res = 0.0;
-     #pragma omp for schedule(static)
+     double local_res = 0.0; // local_result 
+     #pragma omp for schedule(static) // schedule jobs
         for (size_t i=0;i<N ;++i){
            double x_i = (i+0.5)*h;
            local_res += 1.0/(1.0 + x_i*x_i);
           }
-      #pragma omp critical
+      #pragma omp critical // using critical to avoid race condition
       {
          pi += local_res;
        }

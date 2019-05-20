@@ -1,0 +1,15 @@
+in this folder there are three files written in c:
+
+-approx_pi.c: It is simply a code which calculates Pi in a non multi-thread version
+-loop.c: It is the code requested by exercise 2
+-parallel_pi.c: It is a code which calculates Pi using Openmp and using different commands for the race condition
+
+Also, there are two file .sh to run in order to produce the output:
+-loop.sh
+-parallel.sh
+
+In order to produce the output, we have the following command
+qsub -l nodes=1:ppn=20,walltime=00:50:00  parallel.sh
+qsub -l nodes=1:ppn=20,walltime=00:50:00  loop.sh
+
+Output will be saved in a file .txt
