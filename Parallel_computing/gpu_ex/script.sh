@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/apresta/HPC_exercise/Parallel_computing/gpu_ex
+cd /home/apresta/second_semester/HPC_exercise/Parallel_computing/gpu_ex
 module load cudatoolkit/10.0
 
 
