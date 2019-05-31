@@ -1,0 +1,39 @@
+
+
+
+512 thread_per_blocks
+1
+dimensions of block: 32 x 16
+Time in milliseconds: 21.594528
+Bandwidth: 24.861432 GB/s
+
+
+
+1024 thread_per_blocks
+1
+dimensions of block: 32 x 32
+ Time in milliseconds: 26.141537
+Bandwidth: 20.537084 GB/s
+
+
+
+64 thread_per_blocks
+1
+dimensions of block: 8 x 8
+ Time in milliseconds: 9.528512
+Bandwidth: 56.343624 GB/s
+
+
+
+64 thread_per_blocks
+1
+dimensions of block: 8 x 8
+ Time in milliseconds: 9.391776
+Bandwidth: 57.163940 GB/s
+
+
+
+ naive
+dimensions of block: 8 x 8
+ Time in milliseconds: 30.139072
+Bandwidth: 17.813120 GB/s
