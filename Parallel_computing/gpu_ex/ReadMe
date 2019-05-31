@@ -1,3 +1,17 @@
 In interactive mode, we have first of all to load module for gpu 
 
 module load cudatoolkit/10.0
+
+in this file there are several codes: 
+
+- "shared_transpose.cu": there is the implementation of the transpose of a 
+			 matrix using 1024 threads_per_block (tpb).
+-"64_shared_transpose.cu": there is the implementation of the transpose of a 
+                         matrix using 64 threads_per_block (tpb).
+
+-"512_shared_transpose.cu": there is the implementation of the transpose of a
+                         matrix using 64 threads_per_block (tpb).
+ 
+-"transpose.cu": implementation of the transpose without shared memory
+
+all results are store in a .txt file
