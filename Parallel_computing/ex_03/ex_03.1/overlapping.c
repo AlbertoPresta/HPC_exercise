@@ -1,4 +1,4 @@
-include<mpi.h>
+#include<mpi.h>
 #include<stdlib.h>
 #include<stdio.h>
 
@@ -49,12 +49,11 @@ int main(int argc,char* argv []){
                      new_local_mat = local_mat;
                      local_mat = temp;
                    }
-				   // as we are in rank 0 we print local_mat (just become new_l$
-				                      print(local_mat,n_loc,N,file);
-				                   free(new_local_mat);
-				                   }
-				               free(local_mat);
-				               MPI_Finalize();
-				               return 0;
-				               }
-				   
+                   // as we are in rank 0 we print local_mat (just become new_l$
+                   print(local_mat,n_loc,N,file);
+	           free(new_local_mat);
+	           }
+	        free(local_mat);
+	        MPI_Finalize();
+                   return 0;
+	}
