@@ -60,7 +60,9 @@ int main(int argc,char* argv[]){
 		 	MPI_Recv(new_local_mat,N*n_loc,MPI_INT,i,101,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
 		 	print(new_local_mat,n_loc,N,file);
                   	}
+                 free(new_local_mat);
                   }
+                free(local_mat);
 
 	MPI_Finalize();
 	fclose(file); 
